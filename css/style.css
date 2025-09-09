@@ -1,0 +1,373 @@
+/* Global resets */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0a0a0a;
+    color: #f0f0f0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    padding: 12px 20px;
+    z-index: 1000;
+}
+
+/* Navigation list: center items horizontally */
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+/* Even spacing for nav items */
+nav li {
+    margin: 0 20px;
+}
+/* Base nav link styling */
+nav a {
+    position: relative;
+    color: #f0f0f0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+/* Hover underline effect using pseudo-element */
+nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: #f0f0f0;
+    transition: width 0.3s ease;
+}
+nav a:hover::after {
+    width: 100%;
+}
+nav a:hover {
+    color: #cccccc;
+    transform: translateY(-2px);
+}
+nav a.active {
+    /* Active navigation links use the same color as inactive links to maintain a monochrome aesthetic.
+       The underline hover effect will still differentiate the active section. */
+    color: #f0f0f0;
+}
+
+/* Hero section */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../hero.png');
+    background-size: 120% 120%;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    animation: moveBg 30s linear infinite;
+}
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.8) 60%, #0a0a0a 100%);
+}
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+}
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #f5f5f5;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+    animation: fadeInUp 1s ease forwards;
+}
+.hero p {
+    font-size: 1.2rem;
+    color: #bbbbbb;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    animation: fadeInUp 1.5s ease forwards;
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Pulse animation for timeline bullets */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.25); opacity: 0.6; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Animate background position for hero parallax */
+@keyframes moveBg {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+section h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #f5f5f5;
+    text-align: center;
+}
+
+/* About */
+#about {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #0d0d0d 100%);
+}
+#about .text {
+    flex: 1 1 500px;
+}
+#about p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+#about .card {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    backdrop-filter: blur(4px);
+}
+
+/* Timeline */
+#experience .timeline {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+/* Section backgrounds for variation */
+#experience {
+    background: linear-gradient(135deg, #0b0b0b 0%, #0f0f0f 100%);
+}
+#projects {
+    background: linear-gradient(135deg, #0a0a0a 0%, #121212 100%);
+}
+#skills {
+    background: linear-gradient(135deg, #0b0b0b 0%, #131313 100%);
+}
+#contact {
+    background: linear-gradient(135deg, #0a0a0a 0%, #0d0d0d 100%);
+}
+
+/* Résumé and Cover Letter section backgrounds */
+/* Documents section background (combines résumé and cover letter) */
+#documents {
+    background: linear-gradient(135deg, #0a0a0a 0%, #101010 100%);
+    text-align: center;
+}
+
+/* Style for document links */
+#documents ul.doc-links {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+}
+#documents ul.doc-links li {
+    margin-bottom: 10px;
+}
+#documents a {
+    color: #cccccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+#documents a:hover {
+    color: #45a29e;
+}
+
+#experience .timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #444444;
+}
+.timeline-entry {
+    position: relative;
+    margin-left: 60px;
+    margin-bottom: 40px;
+}
+.timeline-entry:last-child {
+    margin-bottom: 0;
+}
+.timeline-entry::before {
+    content: '';
+    position: absolute;
+    left: -37px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    box-shadow: 0 0 0 4px #0a0a0a, 0 0 0 8px rgba(255,255,255,0.1);
+    animation: pulse 2.5s infinite ease-in-out;
+}
+
+.timeline-entry h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #f5f5f5;
+}
+.timeline-entry .subtitle {
+    font-size: 0.95rem;
+    color: #bbbbbb;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+.timeline-entry ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-top: 0;
+    color: #cccccc;
+}
+.timeline-entry li {
+    margin-bottom: 5px;
+    line-height: 1.6;
+}
+
+/* Projects */
+#projects .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+#projects .project-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    backdrop-filter: blur(4px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#projects .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+}
+#projects .project-card h3 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    color: #f5f5f5;
+}
+#projects .project-card p {
+    color: #bbbbbb;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+#projects .project-card ul {
+    list-style: disc;
+    padding-left: 20px;
+    color: #cccccc;
+}
+#projects .project-card li {
+    margin-bottom: 5px;
+    line-height: 1.6;
+}
+
+/* Skills */
+#skills .skill-category {
+    margin-bottom: 30px;
+}
+#skills h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #f5f5f5;
+}
+#skills .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+#skills .tags span {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #f0f0f0;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+#skills .tags span:hover {
+    background-color: #dddddd;
+    color: #0a0a0a;
+}
+
+/* Contact */
+/* Center align contact content */
+#contact {
+    text-align: center;
+}
+#contact p {
+    font-size: 1rem;
+    color: #cccccc;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+#contact a {
+    color: #cccccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+#contact a:hover {
+    color: #45a29e;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+    color: #888888;
+    background: #0a0a0a;
+}
+
+/* Reveal animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
